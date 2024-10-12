@@ -4,6 +4,7 @@ pipeline {
     environment {
         DOCKER_CREDENTIALS = credentials('dockerhub-credentials') 
         DOCKER_IMAGE_NAME = 'kerodo01/hello-world-app' 
+        dockerImage = ''
     }
 
     stages {
@@ -22,7 +23,7 @@ pipeline {
             steps {
                 script {
                     echo 'Building the Docker image...'
-                    sh "docker build -t ${DOCKER_IMAGE_NAME} ."
+                    dockerImage = docker build -t ${DOCKER_IMAGE_NAME} .
                     echo 'Docker image built successfully!'
                 }
             }
@@ -33,9 +34,11 @@ pipeline {
                 script {
                     echo 'Pushing Docker image to Docker Hub...'
                     // Log in to Docker Hub
-                    docker.withRegistry('', 'dockerhub-credentials')
+                    docker.withRegistry('', 'dockerhub-credentials') {
+                        dockerImage.push()
+                    }
                     // sh "echo ${DOCKER_CREDENTIALS_PSW} | docker login -u ${DOCKER_CREDENTIALS_USR} --password-stdin"
-                    sh "docker push ${DOCKER_IMAGE_NAME}"
+                    // sh "docker push ${DOCKER_IMAGE_NAME}"
                     echo 'Docker image pushed successfully!'
 
                 }
