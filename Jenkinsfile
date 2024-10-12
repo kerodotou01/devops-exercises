@@ -22,7 +22,7 @@ pipeline {
             steps {
                 script {
                     echo 'Building the Docker image...'
-                    docker build -t ${DOCKER_IMAGE_NAME} .
+                    sh "docker build -t ${DOCKER_IMAGE_NAME} ."
                     echo 'Docker image built successfully!'
                 }
             }
