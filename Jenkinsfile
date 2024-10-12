@@ -4,7 +4,6 @@ pipeline {
     environment {
         DOCKER_CREDENTIALS = credentials('dockerhub-credentials') 
         DOCKER_IMAGE_NAME = 'kerodo01/hello-world-app' 
-        dockerImage = ''
     }
 
     stages {
@@ -23,7 +22,7 @@ pipeline {
             steps {
                 script {
                     echo 'Building the Docker image...'
-                    dockerImage = docker build -t ${DOCKER_IMAGE_NAME} .
+                    docker build -t ${DOCKER_IMAGE_NAME} .
                     echo 'Docker image built successfully!'
                 }
             }
