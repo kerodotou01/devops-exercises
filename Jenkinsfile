@@ -40,12 +40,6 @@ pipeline {
                             sh "docker login -u ${DOCKER_USERNAME} -p ${DOCKER_PASSWORD}"
                         }
                     }
-
-                    // Log in to Docker Hub
-                    // docker.withRegistry('', 'dockerhub-credentials') {
-                    //     dockerImage.push()
-                    // }
-                    // sh "echo ${DOCKER_CREDENTIALS_PSW} | docker login -u ${DOCKER_CREDENTIALS_USR} --password-stdin"
                     sh "docker push ${DOCKER_IMAGE_NAME}"
                     echo 'Docker image pushed successfully!'
 
