@@ -9,7 +9,9 @@ pipeline {
     stages {
         stage('Clone Repository') {
             steps {
-                git 'https://github.com/kerodotou01/devops-exercises.git'
+                git branch: 'hello-world-app',
+                    url: 'git@github.com:kerodotou01/devops-exercises.git',
+                    credentialsId: 'github-ssh-credentials'
             }
         }
         
