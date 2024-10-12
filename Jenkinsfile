@@ -33,12 +33,21 @@ pipeline {
             steps {
                 script {
                     echo 'Pushing Docker image to Docker Hub...'
-                    // Log in to Docker Hub
-                    docker.withRegistry('', 'dockerhub-credentials') {
-                        dockerImage.push()
+
+                    // Use the withCredentials block to access Docker credentials securely
+                    withCredentials([usernamePassword(credentialsId: 'dockerhub-credentials', usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')]) {
+                        script {
+                            // Login to Docker Hub
+                            sh "docker login -u ${DOCKER_USERNAME} -p ${DOCKER_PASSWORD}"
+                        }
                     }
+
+                    // Log in to Docker Hub
+                    // docker.withRegistry('', 'dockerhub-credentials') {
+                    //     dockerImage.push()
+                    // }
                     // sh "echo ${DOCKER_CREDENTIALS_PSW} | docker login -u ${DOCKER_CREDENTIALS_USR} --password-stdin"
-                    // sh "docker push ${DOCKER_IMAGE_NAME}"
+                    sh "docker push ${DOCKER_IMAGE_NAME}"
                     echo 'Docker image pushed successfully!'
 
                 }
