@@ -17,5 +17,3 @@ spec:
       containers:
       - name: hello-world-container
         image: kerodo01/hello-world-app:latest
-        ports:
-        - containerPort: 80
