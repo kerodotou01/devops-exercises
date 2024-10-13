@@ -2,7 +2,7 @@ apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRoute
 metadata:
   name: hello-world
-  namespace: default
+  namespace: infra-env
 spec:
   entryPoints:
     - web
