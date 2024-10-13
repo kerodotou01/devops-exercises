@@ -7,7 +7,7 @@ spec:
   entryPoints:
     - web
   routes:
-  - match: Host(`hello-world.com`)  # Replace with your domain
+  - match: Host(`my-hello-world-katerina.com`)
     kind: Rule
     services:
     - name: hello-world-svc
