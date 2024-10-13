@@ -1,0 +1,14 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: IngressRoute
+metadata:
+  name: hello-world
+  namespace: default
+spec:
+  entryPoints:
+    - web
+  routes:
+  - match: Host(`hello-world.com`)  # Replace with your domain
+    kind: Rule
+    services:
+    - name: hello-world-svc
+      port: 80
