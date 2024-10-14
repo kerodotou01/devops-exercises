@@ -1,0 +1,17 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: hello-world-app
+spec:
+  destination:
+    name: ''
+    namespace: infra-env
+    server: https://kubernetes.default.svc
+  source:
+    path: manifests
+    repoURL: https://github.com/kerodotou01/devops-exercises.git
+    targetRevision: hello-world-app
+    directory:
+      exclude: ingress.yaml
+  sources: []
+  project: default

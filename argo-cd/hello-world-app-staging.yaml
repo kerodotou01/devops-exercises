@@ -1,0 +1,17 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: hello-world-app-staging
+spec:
+  destination:
+    name: ''
+    namespace: staging
+    server: https://kubernetes.default.svc
+  source:
+    path: manifests
+    repoURL: https://github.com/kerodotou01/devops-exercises.git
+    targetRevision: hello-world-app-stag
+    directory:
+      exclude: ingress.yaml
+  sources: []
+  project: default
