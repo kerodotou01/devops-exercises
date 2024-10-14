@@ -4,6 +4,7 @@ metadata:
   name: hello-world
   labels:
     app: hello-world
+  namespace: infra-env
 spec:
   replicas: 1
   selector:
